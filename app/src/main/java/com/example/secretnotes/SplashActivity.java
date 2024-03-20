@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
         new Handler().postDelayed(() -> {
-            startActivity(new Intent((this), MainActivity.class));
+            startActivity(new Intent((this), CreateAccountActivity.class));
             finish();
         },1000);
     }

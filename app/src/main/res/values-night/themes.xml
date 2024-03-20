@@ -7,4 +7,5 @@
         <!-- Status bar color -->
         <item name="android:statusBarColor">@color/black</item>
     </style>
+    <style name="Theme.SecretNotes" parent="Base.Theme.SecretNotes" />
 </resources>
