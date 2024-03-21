@@ -1,5 +1,6 @@
 package com.example.secretnotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -40,7 +41,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         LoginTextView = findViewById(R.id.login_here);
 
         createAccountButton.setOnClickListener(v -> createAccount());
-        LoginTextView.setOnClickListener(v -> finish());
+        LoginTextView.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
     }
     private void createAccount() {
         String email = emailEditText.getText().toString();
@@ -85,12 +86,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                         Toast.makeText(CreateAccountActivity.this, "Account created successfully, check email to verify", Toast.LENGTH_LONG).show();
                         FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
                         FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
                         finish();
                     } else {
                         if(task.getException() != null)
-                            Toast.makeText(CreateAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(CreateAccountActivity.this, "Account creation failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CreateAccountActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

@@ -10,6 +10,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -23,7 +26,12 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
         new Handler().postDelayed(() -> {
-            startActivity(new Intent((this), CreateAccountActivity.class));
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user != null) {
+                startActivity(new Intent(this, MainActivity.class));
+            } else {
+                startActivity(new Intent(this, LoginActivity.class));
+            }
             finish();
         },1000);
     }
