@@ -14,4 +14,7 @@
     <string name="no_account">Don\'t have an account?</string>
     <string name="signup_here">Sign up here</string>
     <string name="login_here">Login here</string>
+    <string name="add_note">Add new note</string>
+    <string name="Title">Title</string>
+    <string name="Content">Content</string>
 </resources>
