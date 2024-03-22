@@ -16,5 +16,9 @@
     <string name="login_here">Login here</string>
     <string name="add_note">Add new note</string>
     <string name="Title">Title</string>
+    <string name="Note_Title">Note Title</string>
     <string name="Content">Content</string>
+    <string name="Note_Content">Note Content</string>
+    <string name="time">Time</string>
+    <string name="notes">Notes</string>
 </resources>

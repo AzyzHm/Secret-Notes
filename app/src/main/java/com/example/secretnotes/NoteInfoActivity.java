@@ -1,7 +1,6 @@
 package com.example.secretnotes;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
