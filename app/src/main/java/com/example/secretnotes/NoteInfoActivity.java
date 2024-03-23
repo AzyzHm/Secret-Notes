@@ -3,6 +3,7 @@ package com.example.secretnotes;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,9 @@ public class NoteInfoActivity extends AppCompatActivity {
 
     EditText noteTitle,content;
     ImageButton saveButton;
+    TextView pageTitle;
+    String title, content_text, docId;
+    boolean isEdit = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,20 @@ public class NoteInfoActivity extends AppCompatActivity {
         noteTitle = findViewById(R.id.note_title_text);
         content = findViewById(R.id.note_content_text);
         saveButton = findViewById(R.id.save_note);
+        pageTitle = findViewById(R.id.title);
+
+        // Get the data from the intent
+        title = getIntent().getStringExtra("title");
+        content_text = getIntent().getStringExtra("content");
+        docId = getIntent().getStringExtra("docId");
+        if (docId != null && !docId.isEmpty()) {
+            isEdit = true;
+        }
+
+        // Set the data to the views
+        noteTitle.setText(title);
+        content.setText(content_text);
+        pageTitle.setText(isEdit ? "Edit Note" : "Add Note");
 
         saveButton.setOnClickListener(v -> saveNote());
     }
@@ -48,7 +66,15 @@ public class NoteInfoActivity extends AppCompatActivity {
         saveNoteToFirebase(note);
     }
     void saveNoteToFirebase(Note note){
-        DocumentReference documentReference = Utility.getCollectionReferenceForNotes().document();
+        DocumentReference documentReference;
+        if(isEdit){
+            // If the note is being edited, then update the existing note
+            documentReference = Utility.getCollectionReferenceForNotes().document(docId);
+        }
+        else {
+            // If the note is being added, then create a new note
+            documentReference = Utility.getCollectionReferenceForNotes().document();
+        }
         documentReference.set(note).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 Toast.makeText(this, "Note saved successfully", Toast.LENGTH_SHORT).show();
