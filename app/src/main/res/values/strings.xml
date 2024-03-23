@@ -21,4 +21,5 @@
     <string name="Note_Content">Note Content</string>
     <string name="time">Time</string>
     <string name="notes">Notes</string>
+    <string name="delete_note">Delete Note</string>
 </resources>

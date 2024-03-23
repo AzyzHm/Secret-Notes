@@ -15,4 +15,7 @@ public class Utility {
     static String timeStampToString(Timestamp timestamp){
         return new SimpleDateFormat("dd/MM/yyyy").format(timestamp.toDate());
     }
+    static void signOut(){
+        FirebaseAuth.getInstance().signOut();
+    }
 }

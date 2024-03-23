@@ -1,6 +1,7 @@
 package com.example.secretnotes;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class NoteInfoActivity extends AppCompatActivity {
     TextView pageTitle;
     String title, content_text, docId;
     boolean isEdit = false;
+    ImageButton deleteButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class NoteInfoActivity extends AppCompatActivity {
         content = findViewById(R.id.note_content_text);
         saveButton = findViewById(R.id.save_note);
         pageTitle = findViewById(R.id.title);
+        deleteButton = findViewById(R.id.delete_note);
 
         // Get the data from the intent
         title = getIntent().getStringExtra("title");
@@ -44,13 +47,15 @@ public class NoteInfoActivity extends AppCompatActivity {
         if (docId != null && !docId.isEmpty()) {
             isEdit = true;
         }
-
+        if (isEdit){
+            deleteButton.setVisibility(View.VISIBLE);
+        }
         // Set the data to the views
         noteTitle.setText(title);
         content.setText(content_text);
         pageTitle.setText(isEdit ? "Edit Note" : "Add Note");
-
         saveButton.setOnClickListener(v -> saveNote());
+        deleteButton.setOnClickListener(v -> deleteNote());
     }
     void saveNote(){
         String title = noteTitle.getText().toString();
@@ -82,6 +87,19 @@ public class NoteInfoActivity extends AppCompatActivity {
             }
             else {
                 Toast.makeText(this, "Failed to save note", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    void deleteNote(){
+        Utility.getCollectionReferenceForNotes().document(docId).delete().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                // note is deleted successfully
+                Toast.makeText(this, "Note deleted successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else {
+                // note is not deleted
+                Toast.makeText(this, "Failed to delete note", Toast.LENGTH_SHORT).show();
             }
         });
     }

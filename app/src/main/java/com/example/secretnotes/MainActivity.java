@@ -3,6 +3,8 @@ package com.example.secretnotes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +43,16 @@ public class MainActivity extends AppCompatActivity {
         setupRecyclerView();
     }
     void showMenu() {
-        // Show menu
+        PopupMenu popupMenu = new PopupMenu(this, menuButton);
+        popupMenu.getMenu().add("Sign Out");
+        popupMenu.setOnMenuItemClickListener((item) -> {
+            Utility.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();
+            finish();
+            return true;
+        });
+        popupMenu.show();
     }
     void setupRecyclerView() {
         Query query = Utility.getCollectionReferenceForNotes().orderBy("timestamp", Query.Direction.DESCENDING);
