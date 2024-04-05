@@ -10,7 +10,11 @@
     android:gravity="center"
     tools:context=".SplashActivity"
     >
-
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@drawable/logo"
+        android:layout_marginVertical="32dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
