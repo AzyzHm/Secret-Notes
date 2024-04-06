@@ -22,4 +22,9 @@
     <string name="time">Time</string>
     <string name="notes">Notes</string>
     <string name="delete_note">Delete Note</string>
+    <string name="set_lock">Create your account PIN for security</string>
+    <string name="pin">Type in Your PIN Code</string>
+    <string name="confirm_pin">Confirm Your PIN Code</string>
+    <string name="Confirm">Confirm</string>
+    <string name="unlock">Enter your PIN</string>
 </resources>

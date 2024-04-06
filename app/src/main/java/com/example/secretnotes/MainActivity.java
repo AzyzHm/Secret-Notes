@@ -1,6 +1,7 @@
 package com.example.secretnotes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.getMenu().add("Sign Out");
         popupMenu.setOnMenuItemClickListener((item) -> {
             Utility.signOut();
+            SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("registered", false);
+            editor.remove("pin");
+            editor.apply();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();
             finish();

@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
-                            startActivity(new Intent(this, MainActivity.class));
+                            startActivity(new Intent(this, setting_lock.class));
                             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {

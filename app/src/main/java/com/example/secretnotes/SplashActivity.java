@@ -1,6 +1,7 @@
 package com.example.secretnotes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -26,9 +27,12 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
         new Handler().postDelayed(() -> {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if(user != null) {
-                startActivity(new Intent(this, MainActivity.class));
+            SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
+            boolean registered = preferences.getBoolean("registered", false);
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            if(registered || firebaseUser != null) {
+                startActivity(new Intent(this, verify_lock.class));
             } else {
                 startActivity(new Intent(this, LoginActivity.class));
             }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="60dp"
+    tools:context=".verify_lock">
+
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/unlock"
+        android:id="@+id/unlock_icon"
+        android:layout_marginVertical="32dp"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/unlock_icon"
+            android:id="@+id/unlock_text_view"
+            android:text="@string/unlock"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/form"
+        android:layout_below="@id/unlock_text_view"
+        android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pin"
+        android:textSize="20sp"
+        android:id="@+id/pin"
+        android:inputType="numberPassword"
+        android:background="@drawable/rounded_corner"
+        android:padding="16dp"
+        android:layout_margin="12dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:id="@+id/confirm_button"
+        android:layout_height="64dp"
+        android:text="@string/Confirm"
+        android:textSize="20sp"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:layout_marginTop="25dp"
+        android:padding="16dp"
+        />
+    </LinearLayout>
+
+</RelativeLayout>
