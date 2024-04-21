@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification(); // resend verification email
                             Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show();
                         }
                     } else {

@@ -84,8 +84,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         Toast.makeText(CreateAccountActivity.this, "Account created successfully, check email to verify", Toast.LENGTH_LONG).show();
-                        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
-                        FirebaseAuth.getInstance().signOut();
+                        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification(); // Send verification email
+                        FirebaseAuth.getInstance().signOut(); // Sign out the user
                         startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
                         finish();
                     } else {
