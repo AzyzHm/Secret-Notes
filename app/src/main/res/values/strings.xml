@@ -27,4 +27,9 @@
     <string name="confirm_pin">Confirm Your PIN Code</string>
     <string name="Confirm">Confirm</string>
     <string name="unlock">Enter your PIN</string>
+    <string name="forgot_pin">Forgot your PIN?</string>
+    <string name="reset_pin">Reset your PIN</string>
+    <string name="reset">Reset</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
 </resources>

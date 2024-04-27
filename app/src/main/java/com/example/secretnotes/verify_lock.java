@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class verify_lock extends AppCompatActivity {
     EditText pin;
     Button confirm;
-
+    ImageView hide, show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,20 @@ public class verify_lock extends AppCompatActivity {
         pin = findViewById(R.id.pin);
         confirm = findViewById(R.id.confirm_button);
         confirm.setOnClickListener(v -> confirm());
+
+        hide = findViewById(R.id.hide_password);
+        show = findViewById(R.id.show_password);
+
+        hide.setOnClickListener(v -> {
+            pin.setInputType(129);
+            hide.setVisibility(android.view.View.GONE);
+            show.setVisibility(android.view.View.VISIBLE);
+        });
+        show.setOnClickListener(v -> {
+            pin.setInputType(1);
+            show.setVisibility(android.view.View.GONE);
+            hide.setVisibility(android.view.View.VISIBLE);
+        });
     }
     private void confirm() {
         String pin = this.pin.getText().toString();

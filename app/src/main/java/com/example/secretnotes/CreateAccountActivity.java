@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     Button createAccountButton;
     ProgressBar progressBar;
     TextView LoginTextView;
+    ImageView hide, show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,21 @@ public class CreateAccountActivity extends AppCompatActivity {
         createAccountButton = findViewById(R.id.create_account_button);
         progressBar = findViewById(R.id.progress_bar);
         LoginTextView = findViewById(R.id.login_here);
+        hide = findViewById(R.id.hide_password);
+        show = findViewById(R.id.show_password);
+
+        hide.setOnClickListener(v -> {
+            passwordEditText.setInputType(129);
+            confirmPasswordEditText.setInputType(129);
+            hide.setVisibility(View.GONE);
+            show.setVisibility(View.VISIBLE);
+        });
+        show.setOnClickListener(v -> {
+            passwordEditText.setInputType(1);
+            confirmPasswordEditText.setInputType(1);
+            show.setVisibility(View.GONE);
+            hide.setVisibility(View.VISIBLE);
+        });
 
         createAccountButton.setOnClickListener(v -> createAccount());
         LoginTextView.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
