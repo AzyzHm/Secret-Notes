@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("registered", false);
-            editor.remove("pin");
+            PinManager pinManager = new PinManager(this);
+            pinManager.storePin(null);
             editor.apply();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();

@@ -58,8 +58,9 @@ public class setting_lock extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("registered", true);
-        editor.putString("pin", pin);
         editor.apply();
+        PinManager pinManager = new PinManager(this);
+        pinManager.storePin(pin);
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

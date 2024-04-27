@@ -29,7 +29,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
             boolean registered = preferences.getBoolean("registered", false);
-            String storedPin = preferences.getString("pin", null);
+            PinManager pinManager = new PinManager(this);
+            String storedPin = pinManager.getPin();
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
             if((registered || firebaseUser != null) && storedPin != null){

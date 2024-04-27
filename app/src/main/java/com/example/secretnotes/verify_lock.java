@@ -51,8 +51,8 @@ public class verify_lock extends AppCompatActivity {
         if(!isValid) {
             return;
         }
-        SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
-        String storedPin = preferences.getString("pin", null);
+        PinManager pinManager = new PinManager(this);
+        String storedPin = pinManager.getPin();
         if(storedPin == null){
             // No PIN has been set, redirect to setting_lock activity
             startActivity(new Intent(this, setting_lock.class));
